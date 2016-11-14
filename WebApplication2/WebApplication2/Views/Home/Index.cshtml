@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="jumbotron">
+    <h1 class="center">School App</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Add A Student</h2>
+        <p><a class="btn btn-default" @Html.ActionLink("Create a student", "Create", "Students")</a></p>
+    </div>
+    <div class="col-md-3">
+        <h2>Add A Course</h2>
+        <p><a class="btn btn-default" @Html.ActionLink("Create a course", "Create", "Courses")</a></p>
+    </div>
+    <div class="col-md-3">
+        <h2>View all students and courses</h2>
+        <p><a class="btn btn-default" @Html.ActionLink("View all Students and Courses", "Index", "StudentCourses")</a></p>
+    </div>  
+</div>
