@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication2;
+using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
@@ -47,17 +48,21 @@ namespace WebApplication2.Controllers
 
     // GET: RentalRecords/Details/5
     public ActionResult Details(int? id)
-    {
-        if (id == null)
-        {
-            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        }
-       Cours course = db.Courses.Find(id);
-        if (course == null)
-        {
-            return HttpNotFound();
-        }
-        return View(course);
+    {            
+            var course = (from c in db.Courses
+                          where c.CourseId == id
+                          select c).FirstOrDefault();
+
+            var studentList = from d in db.StudentsCourses
+                              join p in db.Students on d.StudentId equals p.StudentId
+                              where d.CourseId == id
+                              select p;
+
+            coursesModel cModel = new coursesModel();
+
+            cModel.newCourse = course;
+            cModel.newStudent = studentList.ToList();
+            return View(cModel);
     }
 
     // GET: RentalRecords/Delete/5

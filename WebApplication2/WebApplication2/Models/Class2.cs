@@ -11,13 +11,13 @@ namespace WebApplication2.Models
         [DisplayName("Student Name")]
         public Student newStudent { get; set; }
 
-        //[DisplayName("Course Name")]
-        //public List <Cours> newCourse { get; set; }
-
         [DisplayName("Course Name")]
-        public Cours newCourse { get; set; }
+        public List<Cours> newCourse { get; set; }
 
-        [DisplayName("Student Courses")]
-        public StudentsCours newStudCourse { get; set; }
+        //[DisplayName("Course Name")]
+        //public Cours newCourse { get; set; }
+
+        //[DisplayName("Student Courses")]
+        //public StudentsCours newStudCourse { get; set; }
     }
 }

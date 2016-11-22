@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebApplication2.Models.Class2>
+﻿@model WebApplication2.Models.Class2
 
 
 @{
@@ -14,13 +14,34 @@
         <dt>
             @Html.DisplayNameFor(model => model.newStudent.StudentName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.newStudent.StudentName)
-        </dd>      
+        </dd> 
+
+        <dt>
+            Courses
+        </dt>
+
+        <dd>
+
+        </dd>
+
+        @foreach (var item in Model.newCourse)
+        {
+
+            <dt>
+                @Html.DisplayNameFor(modelItem => item.CourseName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </dd>
+        }
+                              
     </dl>
 </div>
-<p>
+
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.newStudent.StudentId }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

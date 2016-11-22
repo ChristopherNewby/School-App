@@ -1,4 +1,4 @@
-﻿@model WebApplication2.Cours
+﻿@model WebApplication2.Models.coursesModel
 
 @{
     ViewBag.Title = "Details";
@@ -10,33 +10,36 @@
     <h4>Cours</h4>
     <hr />
     <dl class="dl-horizontal">
+        
         <dt>
-            @Html.DisplayNameFor(model => model.CourseId)
+            @Html.DisplayNameFor(model => model.newCourse.CourseName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourseId)
+            @Html.DisplayFor(model => model.newCourse.CourseName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CourseName)
+           Students
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourseName)
+            
         </dd>
+
+           @foreach (var item in Model.newStudent)
+           {
 
         <dt>
-            @Html.DisplayNameFor(model => model.CourseDescription)
+            @Html.DisplayNameFor(modelItem => item.StudentName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.CourseDescription)
+            @Html.DisplayFor(modelItem => item.StudentName)
         </dd>
-
+           }
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>

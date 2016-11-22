@@ -17,19 +17,7 @@ namespace WebApplication2.Controllers
 
         // GET: Students
         public ActionResult Index()
-        {
-            //var whatever = from d in db.StudentsCourses
-            //               join c in db.Students on d.StudentId equals c.StudentId
-            //               join m in db.Courses on d.CourseId equals m.CourseId
-            //               select new Class2
-            //               {
-            //                   newStudent = c,
-            //                   newCourse = m,
-            //                   newStudCourse = d,
-
-            //               };
-
-            //return View(whatever);
+        {         
             return View(db.Students.ToList());
         }
 
@@ -60,27 +48,20 @@ namespace WebApplication2.Controllers
         // GET: RentalRecords/Details/5
         public ActionResult Details(int? id)
         {
-            var whatever = from d in db.StudentsCourses
-                           join c in db.Students on d.StudentId equals c.StudentId
-                           join m in db.Courses on d.CourseId equals m.CourseId
-                           select new Class2
-                           {
-                               newStudent = c,
-                               newCourse = m,
-                               newStudCourse = d,
+            var student = (from s in db.Students
+                          where s.StudentId == id
+                          select s).FirstOrDefault();
 
-                           };
-            return View(whatever);
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Student student = db.Students.Find(id);
-            //if (student == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(student);
+            var whatever = from d in db.StudentsCourses
+                           join c in db.Courses on d.CourseId equals c.CourseId
+                           where d.StudentId == id
+                           select c;
+
+            Class2 cool = new Class2();
+
+            cool.newStudent = student;
+            cool.newCourse = whatever.ToList(); 
+            return View(cool);          
         }
 
         // GET: RentalRecords/Delete/5
